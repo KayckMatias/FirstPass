@@ -29,12 +29,12 @@
             <h1 class="display-4 fw-normal">Your safety first</h1>
             <p class="lead fw-normal">Guard your passwords with 3 levels of encrypted security</p>
             @guest
-            <p class="lead fw-normal">Welcome back, {{ auth()->user()->name }}!</p>
             <a class="btn btn-outline-primary" href="{{ route('login') }}">Login</a>
             <a class="btn btn-outline-secondary" href="{{ route('register') }}">Register</a>
             @endguest
 
             @auth
+            <p class="lead fw-normal">Welcome back, {{ auth()->user()->name }}!</p>
             <a class="btn btn-outline-primary" href="{{ route('login') }}">Dashboard</a> 
             @endauth
           </div>
