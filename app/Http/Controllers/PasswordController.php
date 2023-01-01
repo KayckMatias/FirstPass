@@ -26,7 +26,9 @@ class PasswordController extends Controller
     public function index()
     {
         $passwords = Password::where('user_id', Auth::id())->paginate(10)->through(function ($query) {
-            $query->password_login = $this->formatLogin(Crypt::decrypt($query->password_login));
+            if($query->password_login){
+                $query->password_login = $this->formatLogin(Crypt::decrypt($query->password_login));
+            }
             return $query;
         });
         return view('passwords.index', ['passwords' => $passwords, 'title' => $this->pageTitle]);
@@ -85,7 +87,7 @@ class PasswordController extends Controller
     {
             $password_db = Password::find($id);
             $user_db = User::find(Auth::id());
-            
+
             if (Hash::check($request_password, $user_db->pin_password)) {
                 $decrypted_login = Crypt::decrypt($password_db->password_login);
                 $decrypted_pass = Crypt::decrypt($password_db->password_pass);
