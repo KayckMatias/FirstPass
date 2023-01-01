@@ -49,7 +49,7 @@
                                         <form method="POST" action="{{ route('categories.destroy', [$item->id]) }}" accept-charset="UTF-8" style="display:inline">
                                             {{ method_field('DELETE') }}
                                             @csrf
-                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete Category" onclick="return confirm('Delete?')"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete Category" onclick="return confirm('Delete? Attention: When you delete a category, you delete all passwords linked to it.')"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                         </form>
                                     </td>
                                 </tr>
