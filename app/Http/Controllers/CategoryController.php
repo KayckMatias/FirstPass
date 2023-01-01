@@ -29,7 +29,9 @@ class CategoryController extends Controller
         $search = $request->search_categories;
         $categories = Category::query()
             ->where('category_name', 'LIKE', "%$search%")
+            ->where('user_id', Auth::id())
             ->paginate(10);
+
         return view('categories.index', ['search' => $search, 'categories' => $categories, 'title' => $this->pageTitle]);
     }
 

@@ -12,7 +12,7 @@
 
     <!-- Scripts -->
     <script src="https://use.fontawesome.com/c5ccb061e9.js"></script>
-    @vite(['resources/js/app.js'])
+    @vite(['resources/js/app.js', 'resources/js/custom.js'])
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -73,7 +73,7 @@
                                     <li class="breadcrumb-item"><a href="#"><i class="fa fa-dashboard"></i></a></li>
                                     @foreach(Request::segments() as $segment)
                                     <?php $segments .= '/' . $segment; ?>
-                                    <li class="breadcrumb-item"><a href="{{ $segments }}">{{ $segment }}</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ url('/') . $segments }}">{{ $segment }}</a></li>
                                     @endforeach
                                 </ol>
                             </nav>

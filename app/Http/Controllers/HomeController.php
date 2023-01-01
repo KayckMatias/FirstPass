@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Password;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use App\Http\Controllers\PasswordController;
 
 class HomeController extends Controller
 {
@@ -13,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->pageTitle = 'Home';
     }
 
     /**
@@ -23,6 +27,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $favorite_passwords = Password::where('user_id', Auth::id())
+            ->where('is_favorite', 1)
+            ->paginate(10)
+            ->through(function ($query) {
+                $query->password_login = PasswordController::formatLogin(Crypt::decrypt($query->password_login));
+                return $query;
+            });
+
+        return view('home', ['favorite_passwords' => $favorite_passwords, 'title' => $this->pageTitle]);
     }
 }

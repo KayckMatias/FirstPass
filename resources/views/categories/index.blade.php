@@ -33,7 +33,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nome</th>
+                                    <th>Name</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

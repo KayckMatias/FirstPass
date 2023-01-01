@@ -32,10 +32,16 @@
                         </select></br>
 
                         <label>Name</label></br>
-                        <input type="text" name="password_name" id="password_name" class="form-control"></br>
+                        <input type="text" name="password_name" id="password_name" class="form-control" required></br>
+
+                        <label>Login Info (optional, e-mail, username, etc)</label></br>
+                        <input type="text" name="password_login" id="password_login" class="form-control"></br>
 
                         <label>Password</label></br>
-                        <input type="text" name="password_pass" id="password_pass" class="form-control"></br>
+                        <input type="text" name="password_pass" id="password_pass" class="form-control" required></br>
+
+                        <label>Favorite?</label>
+                        <input type="checkbox" name="is_favorite" value="1" style="margin-bottom: 1.5rem;"></br>
 
                         <input type="submit" value="Create" class="btn btn-success"></br>
                     </form>

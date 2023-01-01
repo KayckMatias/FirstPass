@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Password;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class PasswordController extends Controller
 {
@@ -23,8 +25,30 @@ class PasswordController extends Controller
      */
     public function index()
     {
-        $passwords = Password::where('user_id', Auth::id())->paginate(10);
+        $passwords = Password::where('user_id', Auth::id())->paginate(10)->through(function ($query) {
+            $query->password_login = $this->formatLogin(Crypt::decrypt($query->password_login));
+            return $query;
+        });
         return view('passwords.index', ['passwords' => $passwords, 'title' => $this->pageTitle]);
+    }
+
+    static public function formatLogin($login){
+        $prefix = '';
+        if(preg_match('/^[\w\.]+@([\w-]+\.)+[\w-]{2,4}$/', $login)){
+            $prefix = "@" . Str::of($login)->after('@');
+            $login = Str::of($login)->before('@');
+        }
+
+        $size_for_format = round(strlen($login)/2);
+        
+        $replace = '';
+        for ($i=0; $i < $size_for_format; $i++) { 
+            $replace .= '*';
+        }
+
+        $finally = Str::of($login)->substrReplace($replace, $size_for_format) . $prefix;
+
+        return $finally;
     }
 
     public function search(Request $request)
@@ -35,7 +59,9 @@ class PasswordController extends Controller
                 $query->where('category_name', 'LIKE', "%$search%");
             })
             ->orWhere('password_name', 'LIKE', "%$search%")
+            ->where('user_id', Auth::id())
             ->paginate(10);
+
         return view('passwords.index', ['search' => $search, 'passwords' => $passwords, 'title' => $this->pageTitle]);
     }
 
@@ -49,7 +75,7 @@ class PasswordController extends Controller
         $password_db = Password::find($request->password_id);
 
         if (Auth::id() != $password_db->user_id) { // Verify if User logged is same of user DB
-            return $this->redirectOnNoPermission('categories.index');
+            return $this->redirectOnNoPermission('passwords.index');
         }
 
         return $this->validatePassword($request->password_id, $request->pin_password);
@@ -57,11 +83,13 @@ class PasswordController extends Controller
 
     private function validatePassword($id, $request_password)
     {
-        
             $password_db = Password::find($id);
-            if (Hash::check($request_password, $password_db->user->pin_password)) {
-                $decrypted = Crypt::decrypt($password_db->password_pass);
-                return view('passwords.show', ['password' => $password_db, 'decrypted' => $decrypted, 'title' => $this->pageTitle]);
+            $user_db = User::find(Auth::id());
+            
+            if (Hash::check($request_password, $user_db->pin_password)) {
+                $decrypted_login = Crypt::decrypt($password_db->password_login);
+                $decrypted_pass = Crypt::decrypt($password_db->password_pass);
+                return view('passwords.show', ['password' => $password_db, 'decrypted_login' => $decrypted_login, 'decrypted_pass' => $decrypted_pass, 'title' => $this->pageTitle]);
             }
 
             return redirect(route('passwords.validate', $id))->with('message', 'Error: Wrong PIN!')->with('alert_type', 'alert-danger');
@@ -88,6 +116,7 @@ class PasswordController extends Controller
     {
         $request->merge([
             'user_id' => Auth::id(),
+            'password_login' => Crypt::encrypt($request->password_login),
             'password_pass' => Crypt::encrypt($request->password_pass),
         ]);
 
@@ -106,6 +135,12 @@ class PasswordController extends Controller
     public function edit($id)
     {
         $password = Password::find($id);
+
+        if (Auth::id() != $password->user_id) { // Verify if User logged is same of user DB
+            return $this->redirectOnNoPermission('passwords.index');
+        }
+
+        $password->password_login = Crypt::decrypt($password->password_login);
         $categories = Category::all();
         return view('passwords.edit', ['password' => $password, 'categories' => $categories, 'title' => $this->pageTitle]);
     }
@@ -120,6 +155,14 @@ class PasswordController extends Controller
     public function update(Request $request, $id)
     {
         $password = Password::find($request->id);
+
+        $is_favorite = $request->is_favorite == '1' ? 1 : 0;
+
+        $request->merge([
+            'password_login' => Crypt::encrypt($request->password_login),
+            'is_favorite' => $is_favorite,
+        ]);
+
         $input = $request->all();
 
         if (Auth::id() != $password->user_id) { // Verify if User logged is same of user DB

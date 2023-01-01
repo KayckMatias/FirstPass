@@ -10,6 +10,7 @@ export default defineConfig({
                 'resources/css/menu.css',
                 'resources/css/fallback.css',
                 'resources/js/app.js',
+                'resources/js/custom.js',
             ],
             refresh: true,
         }),

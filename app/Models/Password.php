@@ -14,7 +14,9 @@ class Password extends Model
         'user_id',
         'category_id',
         'password_name',
+        'password_login',
         'password_pass',
+        'is_favorite',
     ];
 
     /**

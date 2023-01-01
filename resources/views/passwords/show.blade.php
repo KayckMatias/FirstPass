@@ -18,8 +18,12 @@
                                     <td>{{ $password->password_name }}</td>
                                 </tr>
                                 <tr>
+                                    <td><strong>Login Info</strong></td>
+                                    <td><strong>{{ $decrypted_login ?? 'No login info' }}</strong></td>
+                                </tr>
+                                <tr>
                                     <td><strong>Password</strong></td>
-                                    <td><strong>{{ $decrypted ?? 'Não decriptado' }}</strong></td>
+                                    <td><strong>{{ $decrypted_pass ?? 'No decrypted' }}</strong></td>
                                 </tr>
                                 <tr>
                                     <td>Category</td>

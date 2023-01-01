@@ -34,8 +34,10 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nome</th>
-                                    <th>Categoria</th>
+                                    <th>Name</th>
+                                    <th>Login Info</th>
+                                    <th>Category</th>
+                                    <th>Favorite</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -44,7 +46,9 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->password_name }}</td>
+                                    <td>{{ !empty($item->password_login) ? $item->password_login : 'No login info' }}</td>
                                     <td>{{ $item->category->category_name }}</td>
+                                    <td>{{ $item->is_favorite == '1' ? 'Yes' : 'No' }}</td>
                                     <td>
                                         <a href="{{ route('passwords.validate', [$item->id]) }}" title="Validate Password"><button class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
                                         <a href="{{ route('passwords.edit', [$item->id]) }}" title="Edit Password"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>

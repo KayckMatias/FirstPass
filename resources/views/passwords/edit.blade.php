@@ -33,9 +33,15 @@
                         </select></br>
                         <label>Name</label></br>
                         <input type="text" name="password_name" id="password_name" value="{{$password->password_name}}" class="form-control"></br>
+                        <label>Login Info</label></br>
+                        <input type="text" name="password_login" id="password_login" value="{{$password->password_login}}" class="form-control"></br>
                         <label>Password</label></br>
                         <input type="text" value="" class="form-control" disabled>
                         <small id="passwordPassHelp" class="form-text text-muted">For you security, the password as not editable, if you change or wrong the password, create a new password.</small></br>
+
+                        <label>Favorite?</label>
+                        <input type="checkbox" name="is_favorite" value="1" style="margin-bottom: 1.5rem;" {{ $password->is_favorite == 1 ? 'checked' : '' }}></br>
+
                         <input type="submit" value="Edit" class="btn btn-success"></br>
                     </form>
                 </div>
