@@ -26,7 +26,7 @@ class PasswordController extends Controller
     public function index()
     {
         $passwords = Password::where('user_id', Auth::id())->paginate(10)->through(function ($query) {
-            if($query->password_login){
+            if ($query->password_login) {
                 $query->password_login = $this->formatLogin(Crypt::decrypt($query->password_login));
             }
             return $query;
@@ -34,17 +34,18 @@ class PasswordController extends Controller
         return view('passwords.index', ['passwords' => $passwords, 'title' => $this->pageTitle]);
     }
 
-    static public function formatLogin($login){
+    static public function formatLogin($login)
+    {
         $prefix = '';
-        if(preg_match('/^[\w\.]+@([\w-]+\.)+[\w-]{2,4}$/', $login)){
+        if (preg_match('/^[\w\.]+@([\w-]+\.)+[\w-]{2,4}$/', $login)) {
             $prefix = "@" . Str::of($login)->after('@');
             $login = Str::of($login)->before('@');
         }
 
-        $size_for_format = round(strlen($login)/2);
-        
+        $size_for_format = round(strlen($login) / 2);
+
         $replace = '';
-        for ($i=0; $i < $size_for_format; $i++) { 
+        for ($i = 0; $i < $size_for_format; $i++) {
             $replace .= '*';
         }
 
@@ -57,12 +58,18 @@ class PasswordController extends Controller
     {
         $search = $request->search_passwords;
         $passwords = Password::query()
-            ->whereHas('category', function($query) use ($search) {
+            ->whereHas('category', function ($query) use ($search) {
                 $query->where('category_name', 'LIKE', "%$search%");
+                $query->orWhere('password_name', 'LIKE', "%$search%");
             })
-            ->orWhere('password_name', 'LIKE', "%$search%")
             ->where('user_id', Auth::id())
-            ->paginate(10);
+            ->paginate(10)
+            ->through(function ($query) {
+                if ($query->password_login) {
+                    $query->password_login = $this->formatLogin(Crypt::decrypt($query->password_login));
+                }
+                return $query;
+            });
 
         return view('passwords.index', ['search' => $search, 'passwords' => $passwords, 'title' => $this->pageTitle]);
     }
@@ -85,16 +92,16 @@ class PasswordController extends Controller
 
     private function validatePassword($id, $request_password)
     {
-            $password_db = Password::find($id);
-            $user_db = User::find(Auth::id());
+        $password_db = Password::find($id);
+        $user_db = User::find(Auth::id());
 
-            if (Hash::check($request_password, $user_db->pin_password)) {
-                $decrypted_login = Crypt::decrypt($password_db->password_login);
-                $decrypted_pass = Crypt::decrypt($password_db->password_pass);
-                return view('passwords.show', ['password' => $password_db, 'decrypted_login' => $decrypted_login, 'decrypted_pass' => $decrypted_pass, 'title' => $this->pageTitle]);
-            }
+        if (Hash::check($request_password, $user_db->pin_password)) {
+            $decrypted_login = Crypt::decrypt($password_db->password_login);
+            $decrypted_pass = Crypt::decrypt($password_db->password_pass);
+            return view('passwords.show', ['password' => $password_db, 'decrypted_login' => $decrypted_login, 'decrypted_pass' => $decrypted_pass, 'title' => $this->pageTitle]);
+        }
 
-            return redirect(route('passwords.validate', $id))->with('message', 'Error: Wrong PIN!')->with('alert_type', 'alert-danger');
+        return redirect(route('passwords.validate', $id))->with('message', 'Error: Wrong PIN!')->with('alert_type', 'alert-danger');
     }
 
     /**
