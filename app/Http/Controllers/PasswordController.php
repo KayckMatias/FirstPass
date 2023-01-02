@@ -57,8 +57,7 @@ class PasswordController extends Controller
     public function search(Request $request)
     {
         $search = $request->search_passwords;
-        $passwords = Password::query()
-            ->whereHas('category', function ($query) use ($search) {
+        $passwords = Password::whereHas('category', function ($query) use ($search) {
                 $query->where('category_name', 'LIKE', "%$search%");
                 $query->orWhere('password_name', 'LIKE', "%$search%");
             })
