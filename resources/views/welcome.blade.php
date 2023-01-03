@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }} - @yield('title')</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
     <script src="https://use.fontawesome.com/c5ccb061e9.js"></script>
@@ -43,8 +43,8 @@
         </div>
       </main>
       
-      <footer class="container py-4">
-        <div class="row text-center">
+      <footer class="fixed-bottom">
+        <div class="row">
           <div class="col-12 col-md">
             <small class="d-block mb-3 text-muted">Kayck Matias &copy; 2022</small>
           </div>
