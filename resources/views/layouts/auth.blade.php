@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }} - Autenticação</title>
 
     <!-- Scripts -->
     <script src="https://use.fontawesome.com/c5ccb061e9.js"></script>

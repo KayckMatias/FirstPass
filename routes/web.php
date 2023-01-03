@@ -18,7 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes([
+    'reset' => false, 
+    'confirm' => false
+]);
 
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     Route::get('/', function(){
@@ -35,8 +38,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 
     Route::resource('passwords', App\Http\Controllers\PasswordController::class, ['except' => 'show']);
     Route::post('passwords/search', [App\Http\Controllers\PasswordController::class, 'search'])->name('passwords.search');
-    Route::get('password/validate/{id}', [App\Http\Controllers\PasswordController::class, 'showValidate'])->name('passwords.validate');
-    Route::post('password/validation', [App\Http\Controllers\PasswordController::class, 'verifyPassword'])->name('passwords.validation');
+    Route::get('passwords/validate/{id}', [App\Http\Controllers\PasswordController::class, 'showValidate'])->name('passwords.validate')->where('id', '[0-9]+');
+    Route::post('passwords/validate/', [App\Http\Controllers\PasswordController::class, 'verifyPassword'])->name('passwords.validation');
 });
 
 Route::fallback(function(){
