@@ -43,7 +43,7 @@
         </div>
       </main>
       
-      <footer class="fixed-bottom">
+      <footer class="fixed-bottom text-center">
         <div class="row">
           <div class="col-12 col-md">
             <small class="d-block mb-3 text-muted">Kayck Matias &copy; 2022</small>
