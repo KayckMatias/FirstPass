@@ -22,7 +22,7 @@
     @vite(['resources/sass/app.scss', 'resources/css/menu.css'])
 </head>
 
-<body>
+<body class="bg-light">
     <div id="app">
         <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
@@ -33,6 +33,9 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3 {{ (Str::contains(Request::route()->getName(), 'categories')) ? 'active' : '' }}" href="{{route('categories.index')}}">Categories</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3 {{ (Str::contains(Request::route()->getName(), 'passwords')) ? 'active' : '' }}" href="{{route('passwords.index')}}">Passwords</a>
                 </div>
+                <footer class="sidebar-footer">
+                    <small class="d-block mb-3 text-muted">Kayck Matias &copy; 2022</small>
+                </footer>
             </div>
             <!-- Page content wrapper-->
             <div id="page-content-wrapper">

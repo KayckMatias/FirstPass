@@ -29,6 +29,13 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
     text-transform: capitalize;
     text-decoration: none;
  }
+
+.sidebar-footer{
+    position: absolute;
+    margin-left: 50px;
+    bottom: 0px;
+}
+
 @media (min-width: 768px) {
     #sidebar-wrapper {
         margin-left: 0;

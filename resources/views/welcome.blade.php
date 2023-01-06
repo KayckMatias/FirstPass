@@ -22,34 +22,30 @@
     @vite(['resources/sass/app.scss', 'resources/css/menu.css'])
 </head>
 
-<body>
-      <main>
-        <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
-          <div class="col-md-5 p-lg-5 mx-auto my-5">
-            <h1 class="display-4 fw-normal">Your safety first</h1>
-            <p class="lead fw-normal">Guard your passwords with 3 levels of encrypted security</p>
-            @guest
-            <a class="btn btn-outline-primary" href="{{ route('login') }}">Login</a>
-            <a class="btn btn-outline-secondary" href="{{ route('register') }}">Register</a>
-            @endguest
+<body class="bg-light">
+    <main>
+        <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
+            <div class="col-md-5 p-lg-5 mx-auto my-5">
+                <h1 class="display-4 fw-normal">Your safety first</h1>
+                <p class="lead fw-normal">Guard your passwords with 3 levels of encrypted security</p>
+                @guest
+                    <a class="btn btn-outline-primary" href="{{ route('login') }}">Login</a>
+                    <a class="btn btn-outline-secondary" href="{{ route('register') }}">Register</a>
+                @endguest
 
-            @auth
-            <p class="lead fw-normal">Welcome back, {{ auth()->user()->name }}!</p>
-            <a class="btn btn-outline-primary" href="{{ route('login') }}">Dashboard</a> 
-            @endauth
-          </div>
-          <div class="product-device shadow-sm d-none d-md-block"></div>
-          <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+                @auth
+                    <p class="lead fw-normal">Welcome back, {{ auth()->user()->name }}!</p>
+                    <a class="btn btn-outline-primary" href="{{ route('login') }}">Dashboard</a>
+                @endauth
+            </div>
+            <div class="product-device shadow-sm d-none d-md-block"></div>
+            <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
         </div>
-      </main>
-      
-      <footer class="fixed-bottom text-center">
-        <div class="row">
-          <div class="col-12 col-md">
-            <small class="d-block mb-3 text-muted">Kayck Matias &copy; 2022</small>
-          </div>
-        </div>
-      </footer>      
+    </main>
+
+    <footer class="fixed-bottom text-center">
+        <small class="d-block mb-3 text-muted">Kayck Matias &copy; 2022</small>
+    </footer>
 </body>
 
 </html>

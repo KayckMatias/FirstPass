@@ -1,40 +1,30 @@
 @extends('layouts.auth')
 
 @section('content')
-<div id="main-container" class="container-fluid">
-    <div class="row">
-        <div id="auth-form" class="card border-primary">
-            <h5 class="card-header bg-primary text-white">
-                Login</h5>
-            <div class="card-body">
-                <form class="panel-body" method="POST" action="{{ route('login') }}">
-                    @csrf
-                    <div class="input-group">
-                        <span class="input-group-text">
-                            <i class="fa fa-user"></i>
-                        </span>
-                        <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="E-mail">
-                        @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">
-                            <i class="fa fa-lock"></i>
-                        </span>
-                        <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password">
-                        @error('password')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </form>
+    <div class="form-signin w-100 m-auto text-center">
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+            <h1 class="h3 mb-3 fw-normal">Login</h1>
+            <div class="form-floating mb-1">
+                <input type="email" class="form-control rounded @error('email') is-invalid @enderror" id="email" name="email"
+                    placeholder="name@example.com" required>
+                <label for="email">Email address</label>
+                @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
-        </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control rounded @error('password') is-invalid @enderror" id="password" name="password" placeholder="Password" required>
+                <label for="password">Password</label>
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+        </form>
     </div>
-</div>
 @endsection
