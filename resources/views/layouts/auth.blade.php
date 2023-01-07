@@ -19,14 +19,11 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    @vite(['resources/sass/app.scss', 'resources/css/auth.css'])
+    @vite(['resources/sass/app.scss', 'resources/css/app.css'])
 </head>
 
 <body id="app-layout" class="bg-light">
     @yield('content')
-    <footer class="fixed-bottom text-center">
-        <small class="d-block mb-3 text-muted">Kayck Matias &copy; 2022</small>
-    </footer>
 </body>
 
 </html>

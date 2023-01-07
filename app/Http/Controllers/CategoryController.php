@@ -58,7 +58,7 @@ class CategoryController extends Controller
         ]);
         $input = $request->all();
         Category::create($input);
-        return redirect(route('categories.index'))->with('message', 'Category Added!')->with('alert_type', 'alert-success');
+        return redirect(route('categories.index'))->with('message', 'Category Added!')->with('alert_type', 'tw-text-green-700 tw-bg-green-100');
     }
 
     /**
@@ -95,7 +95,7 @@ class CategoryController extends Controller
         }
 
         $category->update($input);
-        return redirect(route('categories.index'))->with('message', 'Category Updated')->with('alert_type', 'alert-success');
+        return redirect(route('categories.index'))->with('message', 'Category Updated')->with('alert_type', 'tw-text-green-700 tw-bg-green-100');
     }
 
     /**
@@ -113,6 +113,6 @@ class CategoryController extends Controller
         }
         
         Category::destroy($id);
-        return redirect(route('categories.index'))->with('message', 'Category Deleted!')->with('alert_type', 'alert-warning');
+        return redirect(route('categories.index'))->with('message', 'Category Deleted!')->with('alert_type', 'tw-text-red-700 tw-bg-red-100');
     }
 }

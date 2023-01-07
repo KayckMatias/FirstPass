@@ -100,7 +100,7 @@ class PasswordController extends Controller
             return view('passwords.show', ['password' => $password_db, 'decrypted_login' => $decrypted_login, 'decrypted_pass' => $decrypted_pass, 'title' => $this->pageTitle]);
         }
 
-        return redirect(route('passwords.validate', $id))->with('message', 'Error: Wrong PIN!')->with('alert_type', 'alert-danger');
+        return redirect(route('passwords.validate', $id))->with('message', 'Error: Wrong PIN!')->with('alert_type', 'tw-text-red-700 tw-bg-red-100');
     }
 
     /**
@@ -131,7 +131,7 @@ class PasswordController extends Controller
         $input = $request->all();
 
         Password::create($input);
-        return redirect(route('passwords.index'))->with('message', 'Password Added!')->with('alert_type', 'alert-success');
+        return redirect(route('passwords.index'))->with('message', 'Password Added!')->with('alert_type', 'tw-text-green-700 tw-bg-green-100');
     }
 
     /**
@@ -178,7 +178,7 @@ class PasswordController extends Controller
         }
 
         $password->update($input);
-        return redirect(route('passwords.index'))->with('message', 'Password Updated')->with('alert_type', 'alert-success');
+        return redirect(route('passwords.index'))->with('message', 'Password Updated')->with('alert_type', 'tw-text-green-700 tw-bg-green-100');
     }
 
     /**
@@ -196,6 +196,6 @@ class PasswordController extends Controller
         }
 
         Password::destroy($id);
-        return redirect(route('passwords.index'))->with('message', 'Password Deleted!')->with('alert_type', 'alert-warning');
+        return redirect(route('passwords.index'))->with('message', 'Password Deleted!')->with('alert_type', 'tw-text-red-700 tw-bg-red-100');
     }
 }
