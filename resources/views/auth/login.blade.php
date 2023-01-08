@@ -42,7 +42,7 @@
                         class="tw-w-full tw-rounded-lg tw-transition-all tw-duration-200 tw-bg-indigo-600 tw-px-4 tw-py-1.5 tw-text-base tw-font-semibold tw-leading-7 tw-text-white hover:tw-text-white tw-shadow-sm tw-ring-1 tw-ring-indigo-600 hover:tw-bg-indigo-700">Sign
                         in</button>
                     <p class="tw-text-sm tw-font-light tw-text-gray-500">
-                        Don’t have an account yet? <a href="{{ route('register') }}"
+                        Don´t have an account yet? <a href="{{ route('register') }}"
                             class="tw-font-medium tw-text-indigo-600 hover:tw-underline">Sign up</a>
                     </p>
                 </form>

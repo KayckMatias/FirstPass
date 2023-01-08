@@ -23,9 +23,9 @@
 </head>
 
 <body class="bg-light">
-    <main>
-        <div class="tw-relative tw-px-6 tw-px-8">
-            <div class="tw-mx-auto tw-max-w-3xl tw-pt-20 tw-pb-32 sm:tw-pt-48 sm:tw-pb-40">
+    <main class="tw-flex tw-h-screen">
+        <div class="tw-m-auto tw-px-6 tw-px-8">
+            <div class="tw-max-w-3xl tw-pt-20 tw-pb-32">
                 <div>
                     <div class="tw-mb-8 tw-flex tw-justify-center">
                         <div
