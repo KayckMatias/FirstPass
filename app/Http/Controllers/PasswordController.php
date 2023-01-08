@@ -149,7 +149,7 @@ class PasswordController extends Controller
         }
 
         $password->password_login = Crypt::decrypt($password->password_login);
-        $categories = Category::all();
+        $categories = Category::where('user_id', Auth::id())->get();
         return view('passwords.edit', ['password' => $password, 'categories' => $categories, 'title' => $this->pageTitle]);
     }
 
