@@ -10,7 +10,7 @@
     @endif
     <div class="tw-p-6 tw-bg-white tw-border tw-border-gray-200 tw-rounded-lg">
         <h5 class="tw-mb-3 tw-text-xl tw-font-bold tw-tracking-tight tw-text-gray-900 tw-text-left">Passwords <a href="{{ route('passwords.create') }}" title="Create Category"
-            class="tw-text-white hover:tw-text-white tw-transition-all tw-duration-200 tw-bg-green-500 hover:tw-bg-green-600 focus:tw-ring-4 tw-font-medium tw-rounded-md tw-text-sm tw-px-4 tw-py-2 tw-ml-3">New</a>    
+            class="tw-text-white hover:tw-text-white tw-transition-all tw-duration-200 tw-bg-green-500 hover:tw-bg-green-600 focus:tw-ring-4 tw-ring-green-200 tw-font-medium tw-rounded-md tw-text-sm tw-px-4 tw-py-2 tw-ml-3">New</a>    
         </h5>
         <div class="tw-mb-3">
             <form action="{{ route('passwords.search') }}" method="POST">
@@ -62,11 +62,11 @@
                             <td class="tw-px-6 tw-py-4">
                                 <div class="tw-inline-flex tw-gap-1">
                                     <a href="{{ route('passwords.validate', [$item->id]) }}" title="Validate Password"
-                                        class="tw-text-white hover:tw-text-white tw-transition-all tw-duration-200 tw-ml-0 tw-bg-blue-700 hover:tw-bg-blue-800 focus:tw-ring-4 tw-font-medium tw-rounded-md tw-text-sm tw-px-3 tw-py-2"><i
+                                        class="tw-text-white hover:tw-text-white tw-transition-all tw-duration-200 tw-ml-0 tw-bg-blue-700 hover:tw-bg-blue-800 focus:tw-ring-4 tw-ring-blue-200 tw-font-medium tw-rounded-md tw-text-sm tw-px-3 tw-py-2"><i
                                             class="fa fa-eye" aria-hidden="true"></i></a>
 
                                     <a href="{{ route('passwords.edit', [$item->id]) }}" title="Edit Password"
-                                        class="tw-text-white hover:tw-text-white tw-transition-all tw-duration-200 tw-ml-0 tw-bg-yellow-500 hover:tw-bg-yellow-600 focus:tw-ring-4 tw-font-medium tw-rounded-md tw-text-sm tw-px-3 tw-py-2"><i
+                                        class="tw-text-white hover:tw-text-white tw-transition-all tw-duration-200 tw-ml-0 tw-bg-yellow-500 hover:tw-bg-yellow-600 focus:tw-ring-4 tw-ring-yellow-200 tw-font-medium tw-rounded-md tw-text-sm tw-px-3 tw-py-2"><i
                                             class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 
                                     <form method="POST" action="{{ route('passwords.destroy', [$item->id]) }}"
@@ -74,7 +74,7 @@
                                         {{ method_field('DELETE') }}
                                         @csrf
                                         <button type="submit"
-                                            class="tw-text-white hover:tw-text-white tw-transition-all tw-duration-200 tw-ml-0 tw-bg-red-500 hover:tw-bg-red-600 focus:tw-ring-4 tw-font-medium tw-rounded-md tw-text-sm tw-px-3 tw-py-2"
+                                            class="tw-text-white hover:tw-text-white tw-transition-all tw-duration-200 tw-ml-0 tw-bg-red-500 hover:tw-bg-red-600 focus:tw-ring-4 tw-ring-red-200 tw-font-medium tw-rounded-md tw-text-sm tw-px-3 tw-py-2"
                                             title="Delete Password" onclick="return confirm('Delete?')"><i
                                                 class="fa fa-trash-o" aria-hidden="true"></i></button>
                                     </form>
