@@ -33,7 +33,7 @@
                             placeholder="Search Categories" required>
                     </div>
                     <button type="submit"
-                        class="tw-text-white tw-transition-all tw-duration-200 tw-ml-0 tw-bg-indigo-700 hover:tw-bg-indigo-800 focus:tw-ring-4 tw-font-medium tw-rounded-r-lg tw-text-sm tw-px-4 tw-py-2">Search</button>
+                        class="tw-text-white tw-transition-all tw-duration-200 tw-ml-0 tw-bg-indigo-700 hover:tw-bg-indigo-800 focus:tw-ring-4 tw-ring-indigo-200 tw-font-medium tw-rounded-r-lg tw-text-sm tw-px-4 tw-py-2">Search</button>
                 </div>
             </form>
         </div>
