@@ -16,24 +16,28 @@
         <div class="tw-mb-3">
             <form action="{{ route('categories.search') }}" method="POST">
                 @csrf
-                <div class="tw-flex">
-                    <div class="tw-relative">
-                        <div
-                            class="tw-absolute tw-inset-y-0 tw-left-0 tw-flex tw-items-center tw-pl-3 tw-pointer-events-none">
-                            <svg aria-hidden="true" class="tw-w-5 tw-h-5 tw-text-gray-500" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
+                <div class="tw-flex tw-flex-wrap tw-justify-center md:tw-justify-start">
+                    <div class="tw-mt-2">
+                        <div class="tw-relative">
+                            <div
+                                class="tw-absolute tw-inset-y-0 tw-left-0 tw-flex tw-items-center tw-pl-3 tw-pointer-events-none">
+                                <svg aria-hidden="true" class="tw-w-5 tw-h-5 tw-text-gray-500" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </div>
+                            <input type="search"
+                                value="{{ Str::contains(Request::route()->getName(), 'search') ? $search : '' }}"
+                                id="search_categories" name="search_categories"
+                                class="tw-h-10 tw-block tw-w-100 tw-p-2.5 tw-pl-10 tw-text-sm tw-text-gray-900 tw-border tw-border-gray-300 tw-rounded-lg tw-bg-gray-50 focus:tw-ring-indigo-500 focus:tw-border-indigo-500"
+                                placeholder="Search Categories" required>
                         </div>
-                        <input type="search"
-                            value="{{ Str::contains(Request::route()->getName(), 'search') ? $search : '' }}"
-                            id="search_categories" name="search_categories"
-                            class="tw-block tw-w-100 tw-p-2.5 tw-pl-10 tw-text-sm tw-text-gray-900 tw-border tw-border-gray-300 tw-rounded-l-lg tw-bg-gray-50 focus:tw-ring-indigo-500 focus:tw-border-indigo-500"
-                            placeholder="Search Categories" required>
                     </div>
-                    <button type="submit"
-                        class="tw-text-white tw-transition-all tw-duration-200 tw-ml-0 tw-bg-indigo-700 hover:tw-bg-indigo-800 focus:tw-ring-4 tw-ring-indigo-200 tw-font-medium tw-rounded-r-lg tw-text-sm tw-px-4 tw-py-2">Search</button>
+                    <div class="tw-ml-2 tw-mt-2">
+                        <button type="submit"
+                            class="tw-h-10 tw-text-white tw-transition-all tw-duration-200 tw-bg-indigo-700 hover:tw-bg-indigo-800 focus:tw-ring-4 tw-ring-indigo-200 tw-font-medium tw-rounded-lg tw-text-sm tw-px-4 tw-py-2">Filter</button>
+                    </div>
                 </div>
             </form>
         </div>
@@ -73,6 +77,9 @@
                 </tbody>
             </table>
         </div>
+        @if($categories->isEmpty())
+            <h4 class="tw-text-center tw-text-xs tw-text-gray-700">Nothing found 😢</h4>
+        @endif
         <div class="d-flex">
             {{ $categories->links() }}
         </div>

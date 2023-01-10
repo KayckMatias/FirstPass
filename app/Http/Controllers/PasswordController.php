@@ -31,7 +31,10 @@ class PasswordController extends Controller
             }
             return $query;
         });
-        return view('passwords.index', ['passwords' => $passwords, 'title' => $this->pageTitle]);
+
+        $categories = Category::where('user_id', Auth::id())->get();
+
+        return view('passwords.index', ['passwords' => $passwords, 'categories' => $categories, 'title' => $this->pageTitle]);
     }
 
     static public function formatLogin($login)
@@ -56,10 +59,17 @@ class PasswordController extends Controller
 
     public function search(Request $request)
     {
-        $search = $request->search_passwords;
-        $passwords = Password::whereHas('category', function ($query) use ($search) {
-                $query->where('category_name', 'LIKE', "%$search%");
-                $query->orWhere('password_name', 'LIKE', "%$search%");
+        $filter_search = $request->search_passwords;
+        $filter_category = $request->category_id;
+        $passwords = Password::query()
+            ->when($filter_category, function($q) use ($filter_category){
+                $q->where('category_id', $filter_category);
+            })
+            ->when($filter_search, function($q) use ($filter_search){
+                $q->whereHas('category', function ($q) use ($filter_search){
+                    $q->where('category_name', 'LIKE', "%$filter_search%");
+                });
+                $q->orWhere('password_name', 'LIKE', "%$filter_search%");
             })
             ->where('user_id', Auth::id())
             ->paginate(10)
@@ -70,7 +80,9 @@ class PasswordController extends Controller
                 return $query;
             });
 
-        return view('passwords.index', ['search' => $search, 'passwords' => $passwords, 'title' => $this->pageTitle]);
+        $categories = Category::where('user_id', Auth::id())->get();
+
+        return view('passwords.index', ['filter_search' => $filter_search, 'filter_category' => $filter_category, 'passwords' => $passwords, 'categories' => $categories, 'title' => $this->pageTitle]);
     }
 
     public function showValidate($id)

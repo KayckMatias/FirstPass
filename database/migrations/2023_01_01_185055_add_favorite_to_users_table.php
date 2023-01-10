@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('passwords', function (Blueprint $table) {
-            Schema::dropIfExists('is_favorite');
+            $table->dropColumn('is_favorite');
         });
     }
 };
