@@ -21,6 +21,10 @@
     <!-- Styles -->
     @vite(['resources/sass/app.scss', 'resources/css/app.css', 'resources/css/menu.css'])
 </head>
+
+@component('_components.preloader')
+@endcomponent
+
 <div x-data="{ sidebarOpen: false }">
     <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
     <div class="tw-relative tw-z-40 md:tw-hidden" :class="{ 'tw-hidden': !sidebarOpen }" role="dialog" aria-modal="true">
@@ -92,7 +96,6 @@
             </div>
         </div>
     </div>
-
     <!-- Static sidebar for desktop -->
     <div class="tw-hidden md:tw-fixed md:tw-inset-y-0 md:tw-flex md:tw-w-64 md:tw-flex-col">
         <!-- Sidebar component, swap this element with another sidebar if you like -->

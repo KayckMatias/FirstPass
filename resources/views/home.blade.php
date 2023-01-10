@@ -11,7 +11,7 @@
                     @forelse ($favorite_passwords as $password)
                         <div class="col-md-6 col-sm-12" style="margin-top: 0.5rem;">
                             <div
-                                class="tw-max-w-sm tw-p-6 tw-bg-white tw-border tw-border-gray-200 tw-rounded-lg tw-flex tw-flex-col tw-items-center">
+                                class="tw-w-full tw-p-6 tw-bg-white tw-border tw-border-gray-200 tw-rounded-lg tw-flex tw-flex-col tw-items-center">
                                 <a href="#">
                                     <h5 class="tw-mb-2 tw-text-xl tw-font-bold tw-tracking-tight tw-text-gray-900 tw-text-center">
                                         {{ $password->password_name }}</h5>

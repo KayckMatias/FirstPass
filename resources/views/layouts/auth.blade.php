@@ -12,7 +12,7 @@
 
     <!-- Scripts -->
     <script src="https://use.fontawesome.com/c5ccb061e9.js"></script>
-    @vite(['resources/js/app.js'])
+    @vite(['resources/js/app.js', 'resources/js/custom.js'])
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -21,6 +21,9 @@
     <!-- Styles -->
     @vite(['resources/sass/app.scss', 'resources/css/app.css'])
 </head>
+
+@component('_components.preloader')
+@endcomponent
 
 <body id="app-layout" class="bg-light">
     @yield('content')
