@@ -69,9 +69,9 @@
                     <div>
                         <label for="pin_password"
                             class="tw-block tw-text-sm tw-font-medium tw-text-gray-900">PIN Password</label>
-                        <input type="number" style="text-security: disc; -webkit-text-security: disc; -moz-text-security: disc;" pattern="[0-9]*" name="pin_password" id="pin_password" placeholder="••••••"
+                        <input type="password" inputmode="numeric" minlength="6" maxlength="6" name="pin_password" id="pin_password" placeholder="123456"
                             class="tw-bg-gray-50 tw-border @error('pin_password') !tw-border-red-300 @enderror tw-border-gray-300 tw-text-gray-900 sm:tw-text-sm tw-rounded-lg focus:tw-ring-indigo-600 focus:border-indigo-600 tw-block tw-w-full tw-p-1.5"
-                            max="6" min="6" required>
+                             required>
                         <small id="pin_passwordHelp" class="tw-text-[10px] tw-text-gray-500 text-muted">ATTENTION: THIS PIN IS NOT CHANGEABLE AND
                             IS
                             NECESSARY TO VIEW YOUR PASSWORDS, <strong>DO NOT LOSE IT!</strong></small>
