@@ -21,7 +21,6 @@
         <form class="tw-space-y-4 md:tw-space-y-6" action="{{ route('passwords.update', [$password->id]) }}" method="post">
             @csrf
             @method('PATCH')
-            <input type="hidden" name="id" id="id" value="{{ $password->id }}" id="id" />
             <div>
                 <label for="category_id" class="tw-block tw-text-sm tw-font-medium tw-text-gray-900">Category</label>
                 <select id="category_id" name="category_id"

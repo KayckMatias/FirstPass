@@ -21,7 +21,6 @@
         <form class="tw-space-y-4 md:tw-space-y-6" action="{{ route('categories.update', [$category->id]) }}" method="post">
             @csrf
             @method('PATCH')
-            <input type="hidden" name="id" id="id" value="{{ $category->id }}" id="id" />
             <div>
                 <label for="category_name" class="tw-block tw-text-sm tw-font-medium tw-text-gray-900">Category Name</label>
                 <input type="text" name="category_name" id="category_name" placeholder="Nubank"
