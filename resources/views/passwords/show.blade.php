@@ -15,13 +15,29 @@
                 </div>
                 <div class="tw-py-4 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-py-5 sm:tw-px-6">
                     <dt class="tw-text-sm tw-font-bold tw-text-black">Login Info</dt>
-                    <dd class="tw-mt-1 tw-text-sm tw-font-bold tw-text-black sm:tw-col-span-2 sm:tw-mt-0">
-                        {{ $decrypted_login ?? 'No login info' }}</dd>
+                    <dd class="tw-mt-1 tw-flex tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
+                        <span id="login-field" class="tw-flex-grow">{{ $decrypted_login ?? 'No login info' }}</span>
+                        <div class="tw-flex-shrink-0">
+                            <span id="login-copied" class="tw-text-green-500 tw-mr-2" style="display:none">Copied!</span>
+                            <a href="#" title="Copy to Clipboard"
+                                onclick="copyToClipboard('#login-field', '#login-copied')"
+                                class="tw-text-white hover:tw-text-white tw-transition-all tw-duration-200 tw-ml-0 tw-bg-indigo-700 hover:tw-bg-indigo-800 focus:tw-ring-4 tw-font-medium tw-rounded-md tw-text-sm tw-px-3 tw-py-2"><i
+                                    class="fa fa-copy" aria-hidden="true"></i></a>
+                        </div>
+                    </dd>
                 </div>
                 <div class="tw-py-4 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-py-5 sm:tw-px-6">
                     <dt class="tw-text-sm tw-font-bold tw-text-black">Password</dt>
-                    <dd class="tw-mt-1 tw-text-sm tw-font-bold tw-text-black sm:tw-col-span-2 sm:tw-mt-0">
-                        {{ $decrypted_pass ?? 'No decrypted' }}</dd>
+                    <dd id="password-field" class="tw-mt-1 tw-flex tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
+                        <span id="password-field" class="tw-flex-grow">{{ $decrypted_pass ?? 'No decrypted' }}</span>
+                        <div class="tw-flex-shrink-0">
+                            <span id="password-copied" class="tw-text-green-500 tw-mr-2" style="display:none">Copied!</span>
+                            <a href="#" title="Copy to Clipboard"
+                                onclick="copyToClipboard('#password-field', '#password-copied')"
+                                class="tw-text-white hover:tw-text-white tw-transition-all tw-duration-200 tw-ml-0 tw-bg-indigo-700 hover:tw-bg-indigo-800 focus:tw-ring-4 tw-font-medium tw-rounded-md tw-text-sm tw-px-3 tw-py-2"><i
+                                    class="fa fa-copy fa-check" aria-hidden="true"></i></a>
+                        </div>
+                    </dd>
                 </div>
                 <div class="tw-py-4 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-py-5 sm:tw-px-6">
                     <dt class="tw-text-sm tw-font-semibold tw-text-gray-500">Category</dt>
