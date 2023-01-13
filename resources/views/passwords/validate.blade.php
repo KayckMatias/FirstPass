@@ -22,9 +22,9 @@
                     <div>
                         <label for="pin_password" class="tw-block tw-mb-2 tw-text-sm tw-font-medium tw-text-gray-900">Your
                             PIN</label>
-                        <input type="password" pattern="[0-9]*" name="pin_password" id="pin_password"
+                        <input type="password" inputmode="numeric" minlength="6" maxlength="6" name="pin_password" id="pin_password" placeholder="123456"
                             class="tw-bg-gray-50 tw-border @error('pin_password') !tw-border-red-300 @enderror tw-border-gray-300 tw-text-gray-900 sm:tw-text-sm tw-rounded-lg focus:tw-ring-indigo-600 focus:border-indigo-600 tw-block tw-w-full tw-p-2.5"
-                            placeholder="•••••••" min="6" max="6" required>
+                            required>
                         @error('pin_password')
                             <span class="invalid-feedback tw-block tw-mb-2 tw-text-sm tw-font-medium tw-text-red-900"
                                 role="alert">

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use \Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,29 +20,31 @@ Route::get('/', function () {
 })->name('welcome');
 
 Auth::routes([
-    'reset' => false, 
+    'verify' => true,
+    'reset' => false,
     'confirm' => false
 ]);
-
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
-    Route::get('/', function(){
+    Route::get('/', function () {
         return redirect(route('home'));
     });
 
     Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::get('profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
-    Route::patch('profile/{id}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    Route::group(['middleware' => ['verified']], function () {
+        Route::get('profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+        Route::patch('profile/{id}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update')->where('id', '[0-9]+');
 
-    Route::post('categories/search', [App\Http\Controllers\CategoryController::class, 'search'])->name('categories.search');
-    Route::resource('categories', App\Http\Controllers\CategoryController::class, ['except' => 'show']);
+        Route::post('categories/search', [App\Http\Controllers\CategoryController::class, 'search'])->name('categories.search');
+        Route::resource('categories', App\Http\Controllers\CategoryController::class, ['except' => 'show']);
 
-    Route::resource('passwords', App\Http\Controllers\PasswordController::class, ['except' => 'show']);
-    Route::post('passwords/search', [App\Http\Controllers\PasswordController::class, 'search'])->name('passwords.search');
-    Route::get('passwords/validate/{id}', [App\Http\Controllers\PasswordController::class, 'showValidate'])->name('passwords.validate')->where('id', '[0-9]+');
-    Route::post('passwords/validate/', [App\Http\Controllers\PasswordController::class, 'verifyPassword'])->name('passwords.validation');
+        Route::resource('passwords', App\Http\Controllers\PasswordController::class, ['except' => 'show']);
+        Route::post('passwords/search', [App\Http\Controllers\PasswordController::class, 'search'])->name('passwords.search');
+        Route::get('passwords/validate/{id}', [App\Http\Controllers\PasswordController::class, 'showValidate'])->name('passwords.validate')->where('id', '[0-9]+');
+        Route::post('passwords/validate/', [App\Http\Controllers\PasswordController::class, 'verifyPassword'])->name('passwords.validation');
+    });
 });
 
-Route::fallback(function(){
+Route::fallback(function () {
     return view('fallback');
 });
