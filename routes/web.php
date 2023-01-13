@@ -21,9 +21,10 @@ Route::get('/', function () {
 
 Auth::routes([
     'verify' => true,
-    'reset' => false,
+    'reset' => true,
     'confirm' => false
 ]);
+
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     Route::get('/', function () {
         return redirect(route('home'));

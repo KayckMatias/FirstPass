@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\Traits\Auth\CustomPasswordReset;
+use App\Traits\Auth\CustomPasswordResetTrait;
 
 class ResetPasswordController extends Controller
 {
@@ -19,7 +19,7 @@ class ResetPasswordController extends Controller
     |
     */
 
-    use CustomPasswordReset;
+    use CustomPasswordResetTrait;
 
     /**
      * Where to redirect users after resetting their password.

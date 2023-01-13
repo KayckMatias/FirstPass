@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
 
-trait CustomPasswordReset
+trait CustomPasswordResetTrait
 {
 
     /**
@@ -25,6 +25,7 @@ trait CustomPasswordReset
      */
     public function showResetForm(Request $request)
     {
+
         $token = $request->route()->parameter('token');
 
         return view('auth.passwords.reset')->with(
@@ -141,8 +142,10 @@ trait CustomPasswordReset
             return new JsonResponse(['message' => trans($response)], 200);
         }
 
-        return redirect($this->redirectPath())
-                            ->with('status', trans($response));
+        return redirect(route('home'))->with([
+            'message' => trans($response),
+            'alert_type' => 'tw-text-green-700 tw-bg-green-100',
+        ]);
     }
 
     /**
