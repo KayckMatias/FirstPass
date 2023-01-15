@@ -16,9 +16,8 @@
                 <h1 class="tw-text-xl tw-font-bold tw-leading-tight tw-tracking-tight tw-text-gray-900 md:tw-text-2xl">
                     Validate Your PIN
                 </h1>
-                <form class="tw-space-y-4 md:tw-space-y-6" method="POST" action="{{ route('passwords.validation') }}">
+                <form class="tw-space-y-4 md:tw-space-y-6" method="POST" action="{{ route('passwords.validation', [$password_id]) }}">
                     @csrf
-                    <input type="hidden" id="password_id" name="password_id" value="{{ $password_id }}">
                     <div>
                         <label for="pin_password" class="tw-block tw-mb-2 tw-text-sm tw-font-medium tw-text-gray-900">Your
                             PIN</label>

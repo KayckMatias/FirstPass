@@ -33,7 +33,7 @@ trait CustomVerifiesEmailsTrait
                         ? new JsonResponse([], 204)
                         : redirect(route('home'))->with([
                             'message'=> 'Your email has verified! Enjoy our system :D',
-                            'alert_type' => 'tw-text-green-700 tw-bg-green-100'
+                            'alert_type' => 'custom-alert-success'
                         ]);
         }
 
@@ -49,7 +49,7 @@ trait CustomVerifiesEmailsTrait
                     ? new JsonResponse([], 204)
                     : redirect(route('home'))->with([
                         'message'=> 'Your email has verified! Enjoy our system :D',
-                        'alert_type' => 'tw-text-green-700 tw-bg-green-100'
+                        'alert_type' => 'custom-alert-success'
                     ]);
     }
 
@@ -77,7 +77,7 @@ trait CustomVerifiesEmailsTrait
                         ? new JsonResponse([], 204)
                         : redirect(route('home'))->with([
                             'message'=> 'Your email has verified! Enjoy our system :D',
-                            'alert_type' => 'tw-text-green-700 tw-bg-green-100'
+                            'alert_type' => 'custom-alert-success'
                         ]);
         }
 
@@ -88,7 +88,7 @@ trait CustomVerifiesEmailsTrait
                     : redirect(route('home'))->with([
                         'resended' => 'true',
                         'message'=> 'Verification link sent! Remember to check the spam box.',
-                        'alert_type' => 'tw-text-green-700 tw-bg-green-100'
+                        'alert_type' => 'custom-alert-success'
                     ]);
     }
 }

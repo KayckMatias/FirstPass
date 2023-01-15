@@ -90,15 +90,15 @@ class PasswordController extends Controller
         return view('passwords.validate', ['password_id' => $id, 'title' => $this->pageTitle]);
     }
 
-    public function verifyPassword(Request $request)
+    public function verifyPassword(Request $request, $id)
     {
-        $password_db = Password::find($request->password_id);
+        $password_db = Password::find($id);
 
         if (Auth::id() != $password_db->user_id) { // Verify if User logged is same of user DB
             return $this->redirectOnNoPermission('passwords.index');
         }
 
-        return $this->validatePassword($request->password_id, $request->pin_password);
+        return $this->validatePassword($id, $request->pin_password);
     }
 
     private function validatePassword($id, $request_password)
@@ -112,7 +112,7 @@ class PasswordController extends Controller
             return view('passwords.show', ['password' => $password_db, 'decrypted_login' => $decrypted_login, 'decrypted_pass' => $decrypted_pass, 'title' => $this->pageTitle]);
         }
 
-        return redirect(route('passwords.validate', $id))->with('message', 'Error: Wrong PIN!')->with('alert_type', 'tw-text-red-700 tw-bg-red-100');
+        return redirect(route('passwords.validate', $id))->with('message', 'Error: Wrong PIN!')->with('alert_type', 'custom-alert-danger');
     }
 
     /**
@@ -143,7 +143,7 @@ class PasswordController extends Controller
         $input = $request->all();
 
         Password::create($input);
-        return redirect(route('passwords.index'))->with('message', 'Password Added!')->with('alert_type', 'tw-text-green-700 tw-bg-green-100');
+        return redirect(route('passwords.index'))->with('message', 'Password Added!')->with('alert_type', 'custom-alert-success');
     }
 
     /**
@@ -174,7 +174,7 @@ class PasswordController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $password = Password::find($request->id);
+        $password = Password::find($id);
 
         $is_favorite = $request->is_favorite == '1' ? 1 : 0;
 
@@ -190,7 +190,7 @@ class PasswordController extends Controller
         }
 
         $password->update($input);
-        return redirect(route('passwords.index'))->with('message', 'Password Updated')->with('alert_type', 'tw-text-green-700 tw-bg-green-100');
+        return redirect(route('passwords.index'))->with('message', 'Password Updated')->with('alert_type', 'custom-alert-success');
     }
 
     /**
@@ -208,6 +208,6 @@ class PasswordController extends Controller
         }
 
         Password::destroy($id);
-        return redirect(route('passwords.index'))->with('message', 'Password Deleted!')->with('alert_type', 'tw-text-red-700 tw-bg-red-100');
+        return redirect(route('passwords.index'))->with('message', 'Password Deleted!')->with('alert_type', 'custom-alert-warning');
     }
 }

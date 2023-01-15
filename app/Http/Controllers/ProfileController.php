@@ -33,6 +33,6 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return redirect(route('profile'))->with('message', 'Profile Updated!')->with('alert_type', 'tw-text-green-700 tw-bg-green-100');
+        return redirect(route('profile'))->with('message', 'Profile Updated!')->with('alert_type', 'custom-alert-success');
     }
 }

@@ -144,7 +144,7 @@ trait CustomPasswordResetTrait
 
         return redirect(route('home'))->with([
             'message' => trans($response),
-            'alert_type' => 'tw-text-green-700 tw-bg-green-100',
+            'alert_type' => 'custom-alert-success',
         ]);
     }
 

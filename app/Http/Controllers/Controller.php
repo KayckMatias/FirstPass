@@ -13,6 +13,6 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function redirectOnNoPermission($route){
-        return redirect(route($route))->with('message', 'Error: you don\'t have permission to this!')->with('alert_type', 'tw-text-red-700 tw-bg-red-100');
+        return redirect(route($route))->with('message', 'Error: you don\'t have permission to this!')->with('alert_type', 'custom-alert-danger');
     }
 }

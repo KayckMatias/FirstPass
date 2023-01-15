@@ -58,7 +58,7 @@ class CategoryController extends Controller
         ]);
         $input = $request->all();
         Category::create($input);
-        return redirect(route('categories.index'))->with('message', 'Category Added!')->with('alert_type', 'tw-text-green-700 tw-bg-green-100');
+        return redirect(route('categories.index'))->with('message', 'Category Added!')->with('alert_type', 'custom-alert-success');
     }
 
     /**
@@ -85,9 +85,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request)
+    public function update(CategoryRequest $request, $id)
     {
-        $category = Category::find($request->id);
+        $category = Category::find($id);
         $input = $request->all();
 
         if (Auth::id() != $category->user_id) { // Verify if User logged is same of user DB
@@ -95,7 +95,7 @@ class CategoryController extends Controller
         }
 
         $category->update($input);
-        return redirect(route('categories.index'))->with('message', 'Category Updated')->with('alert_type', 'tw-text-green-700 tw-bg-green-100');
+        return redirect(route('categories.index'))->with('message', 'Category Updated')->with('alert_type', 'custom-alert-success');
     }
 
     /**
@@ -113,6 +113,6 @@ class CategoryController extends Controller
         }
         
         Category::destroy($id);
-        return redirect(route('categories.index'))->with('message', 'Category Deleted!')->with('alert_type', 'tw-text-red-700 tw-bg-red-100');
+        return redirect(route('categories.index'))->with('message', 'Category Deleted!')->with('alert_type', 'custom-alert-warning');
     }
 }

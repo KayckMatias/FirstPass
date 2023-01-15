@@ -81,7 +81,7 @@ trait CustomForgotPasswordTrait
                     ? new JsonResponse(['message' => trans($response)], 200)
                     : back()->with([
                         'message' => trans($response),
-                        'alert_type' => 'tw-text-green-700 tw-bg-green-100',
+                        'alert_type' => 'custom-alert-success',
                     ]);
     }
 

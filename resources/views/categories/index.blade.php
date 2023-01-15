@@ -67,7 +67,7 @@
                                         @csrf
                                         <button type="submit"
                                             class="tw-text-white hover:tw-text-white tw-transition-all tw-duration-200 tw-ml-0 tw-bg-red-500 hover:tw-bg-red-600 focus:tw-ring-4 tw-ring-red-200 tw-font-medium tw-rounded-md tw-text-sm tw-px-3 tw-py-2"
-                                            title="Delete Category" onclick="return confirm('Delete?')"><i
+                                            title="Delete Category" onclick="return confirm('Delete? When you delete, all passwords linked to this category will be deleted.')"><i
                                                 class="fa fa-trash-o" aria-hidden="true"></i></button>
                                     </form>
                                 </div>
