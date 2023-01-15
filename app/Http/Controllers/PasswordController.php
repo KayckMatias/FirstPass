@@ -90,20 +90,19 @@ class PasswordController extends Controller
         return view('passwords.validate', ['password_id' => $id, 'title' => $this->pageTitle]);
     }
 
-    public function verifyPassword(Request $request, $id)
+    public function verifyPassword(Request $request)
     {
-        $password_db = Password::find($id);
+        $password_db = Password::find($request->password_id);
 
         if (Auth::id() != $password_db->user_id) { // Verify if User logged is same of user DB
             return $this->redirectOnNoPermission('passwords.index');
         }
 
-        return $this->validatePassword($id, $request->pin_password);
+        return $this->validatePassword($password_db, $request->pin_password);
     }
 
-    private function validatePassword($id, $request_password)
+    private function validatePassword($password_db, $request_password)
     {
-        $password_db = Password::find($id);
         $user_db = User::find(Auth::id());
 
         if (Hash::check($request_password, $user_db->pin_password)) {
@@ -112,7 +111,7 @@ class PasswordController extends Controller
             return view('passwords.show', ['password' => $password_db, 'decrypted_login' => $decrypted_login, 'decrypted_pass' => $decrypted_pass, 'title' => $this->pageTitle]);
         }
 
-        return redirect(route('passwords.validate', $id))->with('message', 'Error: Wrong PIN!')->with('alert_type', 'custom-alert-danger');
+        return redirect(route('passwords.validate', $password_db->id))->with('message', 'Error: Wrong PIN!')->with('alert_type', 'custom-alert-danger');
     }
 
     /**
