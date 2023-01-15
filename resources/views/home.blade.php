@@ -5,7 +5,7 @@
 @section('content')
 
     @if (Session::has('message'))
-        <div class="tw-p-4 tw-mb-4 tw-text-sm {{ Session::get('alert_type') }}  tw-rounded-lg" role="alert">
+        <div class="tw-p-4 tw-mb-4 tw-text-sm {{ Session::get('alert_type') }} tw-rounded-lg" role="alert">
             <span class="tw-font-medium">
                 {{ Session::get('message') }}
             </span>

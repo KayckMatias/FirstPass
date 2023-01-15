@@ -28,7 +28,7 @@
                 </div>
                 <div class="tw-py-4 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-py-5 sm:tw-px-6">
                     <dt class="tw-text-sm tw-font-bold tw-text-black">Password</dt>
-                    <dd id="password-field" class="tw-mt-1 tw-flex tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
+                    <dd class="tw-mt-1 tw-flex tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
                         <span id="password-field" class="tw-flex-grow">{{ $decrypted_pass ?? 'No decrypted' }}</span>
                         <div class="tw-flex-shrink-0">
                             <span id="password-copied" class="tw-text-green-500 tw-mr-2" style="display:none">Copied!</span>
