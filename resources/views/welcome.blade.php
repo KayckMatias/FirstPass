@@ -45,7 +45,7 @@
                         <p class="tw-mt-6 tw-text-lg tw-leading-8 tw-text-gray-600 tw-text-center">Guard your
                             passwords
                             with 3 levels of encrypted security</p>
-                        <div class="tw-mt-8 tw-flex tw-gap-x-4 tw-justify-center">
+                        <div class="tw-mt-8 tw-flex tw-gap-x-4 tw-justify-center tw-flex-row tw-items-center">
                             @guest
                                 <a href="{{ route('login') }}"
                                     class="tw-inline-block tw-rounded-lg tw-transition-all tw-duration-200 tw-bg-indigo-600 tw-px-4 tw-py-1.5 tw-text-base tw-font-semibold tw-leading-7 tw-text-white hover:tw-text-white tw-shadow-sm tw-ring-1 tw-ring-indigo-600 hover:tw-bg-indigo-700">
