@@ -103,8 +103,8 @@
         @if($passwords->isEmpty())
             <h4 class="tw-text-center tw-text-xs tw-text-gray-700">Nothing found 😢</h4>
         @endif
-        <div class="d-flex">
-            {{ $passwords->links() }}
+        <div id="pagination-section" class="tw-mt-3">
+            {{ $passwords->links('pagination::tailwind') }}
         </div>
     </div>
 @endsection

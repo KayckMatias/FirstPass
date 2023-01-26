@@ -81,7 +81,7 @@
             <h4 class="tw-text-center tw-text-xs tw-text-gray-700">Nothing found 😢</h4>
         @endif
         <div class="d-flex">
-            {{ $categories->links() }}
+            {{ $categories->links('pagination::tailwind') }}
         </div>
     </div>
 @endsection
