@@ -62,14 +62,14 @@ class PasswordController extends Controller
         $filter_search = $request->search_passwords;
         $filter_category = $request->category_id;
         $passwords = Password::query()
-            ->when($filter_category, function($q) use ($filter_category){
+            ->when($filter_category, function ($q) use ($filter_category) {
                 $q->where('category_id', $filter_category);
             })
-            ->when($filter_search, function($q) use ($filter_search){
-                $q->whereHas('category', function ($q) use ($filter_search){
-                    $q->where('category_name', 'LIKE', "%$filter_search%");
+            ->when($filter_search, function ($q) use ($filter_search) {
+                $q->whereHas('category', function ($q) use ($filter_search) { 
+                    $q->where('password_name', 'LIKE', "%$filter_search%");
+                    $q->orWhere('category_name', 'LIKE', "%$filter_search%");
                 });
-                $q->orWhere('password_name', 'LIKE', "%$filter_search%");
             })
             ->where('user_id', Auth::id())
             ->paginate(10)

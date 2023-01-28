@@ -23,4 +23,8 @@ class Category extends Model
         'user_id',
     ];
 
+    public function password()
+    {
+        return $this->hasMany('App\Models\Password', 'category_id', 'id');
+    }
 }
