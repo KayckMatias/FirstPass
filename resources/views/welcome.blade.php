@@ -73,7 +73,7 @@
         </div>
     </main>
     <footer class="fixed-bottom text-center">
-        <small class="d-block mb-3 text-muted">Kayck Matias &copy; 2022</small>
+        <p class="tw-d-block tw-mb-3 tw-text-gray-600">Kayck Matias &copy; 2022</p>
     </footer>
 </body>
 
