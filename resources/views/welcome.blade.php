@@ -12,7 +12,7 @@
     <meta name="description" content="The best method for guard your passwords with security! Are 3 levels of encryption made especially for you. And more: It's Free!">
 
     <!-- Scripts -->
-    <script src="https://use.fontawesome.com/c5ccb061e9.js"></script>
+    <script async src="https://use.fontawesome.com/c5ccb061e9.js"></script>
     @vite(['resources/js/app.js'])
 
     <!-- Fonts -->

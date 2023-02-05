@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }} - @yield('title')</title>
 
     <!-- Scripts -->
-    <script src="https://use.fontawesome.com/c5ccb061e9.js"></script>
+    <script async src="https://use.fontawesome.com/c5ccb061e9.js"></script>
     @vite(['resources/js/app.js', 'resources/js/custom.js'])
 
     <!-- Fonts -->
