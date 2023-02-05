@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('passwords', function (Blueprint $table) {
-            $table->tinyInteger('need_pin')->after('password_login')->default(1);
+            $table->tinyInteger('need_pin')->after('password_login')->default(0);
         });
     }
 
