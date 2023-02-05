@@ -41,7 +41,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 
         Route::resource('passwords', App\Http\Controllers\PasswordController::class, ['except' => 'show']);
         Route::post('passwords/search', [App\Http\Controllers\PasswordController::class, 'search'])->name('passwords.search');
-        Route::get('passwords/validate/{id}', [App\Http\Controllers\PasswordController::class, 'showValidate'])->name('passwords.validate')->where('id', '[0-9]+');
+        Route::get('passwords/validate/{id}', [App\Http\Controllers\PasswordController::class, 'checkNeedPin'])->name('passwords.validate')->where('id', '[0-9]+');
         Route::post('passwords/validate/', [App\Http\Controllers\PasswordController::class, 'verifyPassword'])->name('passwords.validation');
     });
 });

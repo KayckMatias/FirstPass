@@ -17,6 +17,7 @@ class Password extends Model
         'password_login',
         'password_pass',
         'is_favorite',
+        'need_pin',
     ];
 
     /**

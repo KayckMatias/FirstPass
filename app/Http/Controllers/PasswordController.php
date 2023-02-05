@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PasswordRequest;
 use App\Models\Category;
 use App\Models\Password;
 use App\Models\User;
@@ -85,8 +86,19 @@ class PasswordController extends Controller
         return view('passwords.index', ['filter_search' => $filter_search, 'filter_category' => $filter_category, 'passwords' => $passwords, 'categories' => $categories, 'title' => $this->pageTitle]);
     }
 
-    public function showValidate($id)
-    {
+    public function checkNeedPin($id){
+        $password_db = Password::find($id);
+
+        if (Auth::id() != $password_db->user_id) { // Verify if User logged is same of user DB
+            return $this->redirectOnNoPermission('passwords.index');
+        }
+
+        if($password_db->need_pin == 0){
+            $decrypted_login = Crypt::decrypt($password_db->password_login);
+            $decrypted_pass = Crypt::decrypt($password_db->password_pass);
+            return view('passwords.show', ['password' => $password_db, 'decrypted_login' => $decrypted_login, 'decrypted_pass' => $decrypted_pass, 'title' => $this->pageTitle]);
+        }
+
         return view('passwords.validate', ['password_id' => $id, 'title' => $this->pageTitle]);
     }
 
@@ -128,10 +140,10 @@ class PasswordController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\PasswordRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PasswordRequest $request)
     {
         $request->merge([
             'user_id' => Auth::id(),
@@ -171,7 +183,7 @@ class PasswordController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PasswordRequest $request, $id)
     {
         $password = Password::find($id);
 
@@ -183,7 +195,7 @@ class PasswordController extends Controller
         ]);
 
         $input = $request->all();
-
+        
         if (Auth::id() != $password->user_id) { // Verify if User logged is same of user DB
             return $this->redirectOnNoPermission('passwords.index');
         }
