@@ -63,7 +63,7 @@
               To: "tw-opacity-0"
           -->
                 <div class="tw-absolute tw-top-0 tw-right-0 tw--mr-12 tw-pt-2">
-                    <button type="button" @click="alert('opa')"
+                    <button type="button" @click="sidebarOpen = !sidebarOpen"
                         class="tw-ml-1 tw-flex tw-h-10 tw-w-10 tw-items-center tw-justify-center tw-rounded-full focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-inset focus:tw-ring-white">
                         <span class="tw-sr-only">Close sidebar</span>
                         <!-- Heroicon name: outline/x-mark -->
