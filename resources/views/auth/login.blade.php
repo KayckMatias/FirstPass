@@ -48,9 +48,17 @@
                             </span>
                         @enderror
                     </div>
-                    <div class="flex items-center justify-between">
+                    <div class="tw-flex tw-items-center tw-justify-between">
+                        <div class="tw-flex tw-items-start">
+                            <div class="tw-flex tw-items-center tw-h-5">
+                              <input id="remember" name="remember" aria-describedby="remember" type="checkbox" class="tw-w-4 tw-h-4 tw-border tw-border-gray-300 tw-rounded tw-bg-gray-50 focus:tw-ring-3 focus:tw-ring-primary-300">
+                            </div>
+                            <div class="tw-ml-3 tw-text-sm">
+                              <label for="remember" class="tw-text-gray-500">Remember me</label>
+                            </div>
+                        </div>
                         <div class="text-sm">
-                            <a href="{{ route('password.request') }}" class="font-medium text-indigo-600 hover:text-indigo-500">Forgot your
+                            <a href="{{ route('password.request') }}" class="tw-font-medium tw-text-indigo-500 hover:tw-text-indigo-800">Forgot your
                                 password?</a>
                         </div>
                     </div>
