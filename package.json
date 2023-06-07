@@ -14,7 +14,7 @@
     "postcss": "^8.4.20",
     "sass": "^1.56.1",
     "tailwindcss": "^3.2.4",
-    "vite": "^4.0.0"
+    "vite": "^4.0.5"
   },
   "name": "projectpass",
   "description": "<p align=\"center\"><a href=\"https://laravel.com\" target=\"_blank\"><img src=\"https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg\" width=\"400\" alt=\"Laravel Logo\"></a></p>",
